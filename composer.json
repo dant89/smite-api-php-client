@@ -1,0 +1,33 @@
+{
+    "name": "dant89/smite-api-php-client",
+    "description": "A lightweight PHP client for Smite API",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dan Thorpe",
+            "email": "danthorpe@live.co.uk"
+        }
+    ],
+    "require": {
+        "symfony/http-client": "^4.3"
+    },
+    "require-dev": {
+        "phpmd/phpmd": "^2.7",
+        "phpunit/phpunit": "^8.4",
+        "squizlabs/php_codesniffer": "^3.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dant89\\SmiteApiClient\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
