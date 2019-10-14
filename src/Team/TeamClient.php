@@ -20,7 +20,8 @@ class TeamClient extends AbstractHttpClient
     public function searchTeams(string $searchTerm, string $sessionId, string $timestamp): Response
     {
         $signature = $this->generateSignature('searchteams', $timestamp);
-        $uri = "/searchteamsJson/{$this->client->getDevId()}/{$signature}/{$sessionId}/{$timestamp}/{$searchTerm}";
+        $uri = "/searchteams{$this->client->getResponseFormat()}/{$this->client->getDevId()}/{$signature}/" .
+            "{$sessionId}/{$timestamp}/{$searchTerm}";
 
         return $this->get($uri);
     }
@@ -31,10 +32,11 @@ class TeamClient extends AbstractHttpClient
      * @param string $timestamp
      * @return Response
      */
-    public function teamDetails(string $clanId, string $sessionId, string $timestamp): Response
+    public function getTeamDetails(string $clanId, string $sessionId, string $timestamp): Response
     {
         $signature = $this->generateSignature('getteamdetails', $timestamp);
-        $uri = "/getteamdetailsJson/{$this->client->getDevId()}/{$signature}/{$sessionId}/{$timestamp}/{$clanId}";
+        $uri = "/getteamdetails{$this->client->getResponseFormat()}/{$this->client->getDevId()}/{$signature}/" .
+            "{$sessionId}/{$timestamp}/{$clanId}";
 
         return $this->get($uri);
     }
@@ -45,10 +47,11 @@ class TeamClient extends AbstractHttpClient
      * @param string $timestamp
      * @return Response
      */
-    public function teamPlayers(string $clanId, string $sessionId, string $timestamp): Response
+    public function getTeamPlayers(string $clanId, string $sessionId, string $timestamp): Response
     {
         $signature = $this->generateSignature('getteamplayers', $timestamp);
-        $uri = "/getteamplayersJson/{$this->client->getDevId()}/{$signature}/{$sessionId}/{$timestamp}/{$clanId}";
+        $uri = "/getteamplayers{$this->client->getResponseFormat()}/{$this->client->getDevId()}/{$signature}/" .
+            "{$sessionId}/{$timestamp}/{$clanId}";
 
         return $this->get($uri);
     }

@@ -12,13 +12,32 @@ use Dant89\SmiteApiClient\Response;
 class AuthenticationClient extends AbstractHttpClient
 {
     /**
+     * A required step to Authenticate the developerId/signature for further API use.
+     *
      * @param string $timestamp
      * @return Response
      */
-    public function authenticate(string $timestamp): Response
+    public function createSession(string $timestamp): Response
     {
         $signature = $this->generateSignature('createsession', $timestamp);
-        $uri = "/createsessionJson/{$this->client->getDevId()}/{$signature}/{$timestamp}";
+        $uri = "/createsession{$this->client->getResponseFormat()}/{$this->client->getDevId()}/{$signature}/" .
+            "{$timestamp}";
+
+        return $this->get($uri);
+    }
+
+    /**
+     * A means of validating that a session is established.
+     *
+     * @param string $timestamp
+     * @param string $sessionId
+     * @return Response
+     */
+    public function testSession(string $timestamp, string $sessionId): Response
+    {
+        $signature = $this->generateSignature('testsession', $timestamp);
+        $uri = "/testsession{$this->client->getResponseFormat()}/{$this->client->getDevId()}/{$signature}/" .
+            "{$sessionId}/{$timestamp}";
 
         return $this->get($uri);
     }
