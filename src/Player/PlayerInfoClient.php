@@ -23,7 +23,7 @@ class PlayerInfoClient extends AbstractHttpClient
      */
     public function getFriends(string $playerId, string $sessionId, string $timestamp): Response
     {
-        $signature = $this->generateSignature('getfriends', $timestamp);
+        $signature = $this->client->generateSignature('getfriends', $timestamp);
         $uri = "/getfriends{$this->client->getResponseFormat()}/{$this->client->getDevId()}/{$signature}/" .
             "{$sessionId}/{$timestamp}/{$playerId}";
 
@@ -41,7 +41,7 @@ class PlayerInfoClient extends AbstractHttpClient
      */
     public function getGodRanks(string $playerId, string $sessionId, string $timestamp): Response
     {
-        $signature = $this->generateSignature('getgodranks', $timestamp);
+        $signature = $this->client->generateSignature('getgodranks', $timestamp);
         $uri = "/getgodranks{$this->client->getResponseFormat()}/{$this->client->getDevId()}/{$signature}/" .
             "{$sessionId}/{$timestamp}/{$playerId}";
 
@@ -59,7 +59,7 @@ class PlayerInfoClient extends AbstractHttpClient
      */
     public function getPlayerAchievements(string $playerId, string $sessionId, string $timestamp): Response
     {
-        $signature = $this->generateSignature('getplayerachievements', $timestamp);
+        $signature = $this->client->generateSignature('getplayerachievements', $timestamp);
         $uri = "/getplayerachievements{$this->client->getResponseFormat()}/{$this->client->getDevId()}/{$signature}/" .
             "{$sessionId}/{$timestamp}/{$playerId}";
 
@@ -85,7 +85,7 @@ class PlayerInfoClient extends AbstractHttpClient
     public function getPlayerStatus(string $playerId, string $sessionId, string $timestamp): Response
     {
 
-        $signature = $this->generateSignature('getplayerstatus', $timestamp);
+        $signature = $this->client->generateSignature('getplayerstatus', $timestamp);
         $uri = "/getplayerstatus{$this->client->getResponseFormat()}/{$this->client->getDevId()}/{$signature}/" .
             "{$sessionId}/{$timestamp}/{$playerId}";
 
@@ -103,7 +103,7 @@ class PlayerInfoClient extends AbstractHttpClient
      */
     public function getMatchHistory(string $playerId, string $sessionId, string $timestamp): Response
     {
-        $signature = $this->generateSignature('getmatchhistory', $timestamp);
+        $signature = $this->client->generateSignature('getmatchhistory', $timestamp);
         $uri = "/getmatchhistory{$this->client->getResponseFormat()}/{$this->client->getDevId()}/{$signature}/" .
             "{$sessionId}/{$timestamp}/{$playerId}";
 
@@ -123,7 +123,7 @@ class PlayerInfoClient extends AbstractHttpClient
     public function getQueueStats(string $playerId, string $queue, string $sessionId, string $timestamp): Response
     {
 
-        $signature = $this->generateSignature('getqueuestats', $timestamp);
+        $signature = $this->client->generateSignature('getqueuestats', $timestamp);
         $uri = "/getqueuestats{$this->client->getResponseFormat()}/{$this->client->getDevId()}/{$signature}/" .
             "{$sessionId}/{$timestamp}/{$playerId}/{$queue}";
 
@@ -141,7 +141,7 @@ class PlayerInfoClient extends AbstractHttpClient
      */
     public function searchPlayers(string $searchPlayer, string $sessionId, string $timestamp): Response
     {
-        $signature = $this->generateSignature('searchplayers', $timestamp);
+        $signature = $this->client->generateSignature('searchplayers', $timestamp);
         $uri = "/searchplayers{$this->client->getResponseFormat()}/{$this->client->getDevId()}/{$signature}/" .
             "{$sessionId}/{$timestamp}/{$searchPlayer}";
 

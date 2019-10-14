@@ -30,7 +30,7 @@ class LeagueClient extends AbstractHttpClient
         string $sessionId,
         string $timestamp
     ): Response {
-        $signature = $this->generateSignature('getleagueleaderboard', $timestamp);
+        $signature = $this->client->generateSignature('getleagueleaderboard', $timestamp);
         $uri = "/getleagueleaderboard{$this->client->getResponseFormat()}/{$this->client->getDevId()}/{$signature}/" .
             "{$sessionId}/{$timestamp}/{$queue}/{$tie}/{$round}";
 
@@ -47,7 +47,7 @@ class LeagueClient extends AbstractHttpClient
      */
     public function getLeagueSeasons(string $queue, string $sessionId, string $timestamp): Response
     {
-        $signature = $this->generateSignature('getleagueseasons', $timestamp);
+        $signature = $this->client->generateSignature('getleagueseasons', $timestamp);
         $uri = "/getleagueseasons{$this->client->getResponseFormat()}/{$this->client->getDevId()}/{$signature}/" .
             "{$sessionId}/{$timestamp}/{$queue}";
 

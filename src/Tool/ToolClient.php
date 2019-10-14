@@ -32,7 +32,7 @@ class ToolClient extends AbstractHttpClient
      */
     public function getDataUsed(string $timestamp, string $sessionId): Response
     {
-        $signature = $this->generateSignature('getdataused', $timestamp);
+        $signature = $this->client->generateSignature('getdataused', $timestamp);
         $uri = "/getdataused{$this->client->getResponseFormat()}/{$this->client->getDevId()}/{$signature}/" .
             "{$sessionId}/{$timestamp}";
 
@@ -48,7 +48,7 @@ class ToolClient extends AbstractHttpClient
      */
     public function getHirezServerStatus(string $timestamp, string $sessionId): Response
     {
-        $signature = $this->generateSignature('gethirezserverstatus', $timestamp);
+        $signature = $this->client->generateSignature('gethirezserverstatus', $timestamp);
         $uri = "/gethirezserverstatus{$this->client->getResponseFormat()}/{$this->client->getDevId()}/{$signature}/" .
             "{$sessionId}/{$timestamp}";
 
@@ -65,7 +65,7 @@ class ToolClient extends AbstractHttpClient
      */
     public function getPatchInfo(string $timestamp, string $sessionId): Response
     {
-        $signature = $this->generateSignature('getpatchinfo', $timestamp);
+        $signature = $this->client->generateSignature('getpatchinfo', $timestamp);
         $uri = "/getpatchinfo{$this->client->getResponseFormat()}/{$this->client->getDevId()}/{$signature}/" .
             "{$sessionId}/{$timestamp}";
 
