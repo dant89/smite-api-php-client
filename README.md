@@ -45,7 +45,7 @@ $smiteClient = new Client(SMITE_DEV_ID, SMITE_AUTH_KEY);
 // Get a session_id from a signed authentication request
 $authClient = $smiteClient->getHttpClient('auth');
 $timestamp = date('omdHis');
-$response = $authClient->authenticate($timestamp);
+$response = $authClient->createSession($timestamp);
 
 // Check for valid response status
 if ($response->getStatus() === 200) {
@@ -59,7 +59,7 @@ Now that you have a `$sessionId` you are free to make calls to the other client 
 $clanId = 123;
 
 $teamClient = $smiteClient->getHttpClient('team');
-$response = $teamClient->teamPlayers($clanId, $sessionId, $timestamp);
+$response = $teamClient->getTeamPlayers($clanId, $sessionId, $timestamp);
 
 $teamPlayers = [];
 if ($response->getStatus() === 200) {
@@ -77,6 +77,18 @@ Default limits:
 >  session_time_limit: 15 minutes<br>
 > request_day_limit: 7500
 
+## Helpers
+`languageCode` values:
+- 1 English
+- 2 German
+- 3 French
+- 5 Chinese
+- 7 Spanish
+- 9 Spanish (Latin America)
+- 10 Portuguese
+- 11 Russian
+- 12 Polish
+- 13 Turkish 
 
 
 ## Contributions
