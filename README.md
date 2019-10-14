@@ -67,6 +67,17 @@ if ($response->getStatus() === 200) {
 }
 ```
 
+## Rate Limiting / Caching Suggestion
+
+I recommend that you implement some sort of caching of your `$sessionId` and / or returned data, the Smite developer API has rate limits so caching will help you avoid going over those limits:
+
+Default limits:
+> concurrent_sessions: 50<br>
+> sessions_per_day: 500<br>
+>  session_time_limit: 15 minutes<br>
+> request_day_limit: 7500
+
+
 
 ## Contributions
 
