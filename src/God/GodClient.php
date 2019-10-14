@@ -30,8 +30,8 @@ class GodClient extends AbstractHttpClient
      */
     public function getGods(string $sessionId, string $timestamp, int $languageCode = 1): Response
     {
-        $signature = $this->generateSignature('getgods', $timestamp);
-        $uri = "/getgodsJson/{$this->client->getDevId()}/{$signature}/{$sessionId}/{$timestamp}/{$languageCode}";
+        $signature = $this->client->generateSignature('getgods', $timestamp);
+        $uri = "/getgods{$this->client->getResponseFormat()}/{$this->client->getDevId()}/{$signature}/{$sessionId}/{$timestamp}/{$languageCode}";
 
         return $this->get($uri);
     }
@@ -51,7 +51,7 @@ class GodClient extends AbstractHttpClient
             throw new \InvalidArgumentException('Invalid queue specified: "%s"', $queue);
         }
 
-        $signature = $this->generateSignature('getgodleaderboard', $timestamp);
+        $signature = $this->client->generateSignature('getgodleaderboard', $timestamp);
         $uri = "/getgodleaderboard{$this->client->getResponseFormat()}/{$this->client->getDevId()}/{$signature}/" .
             "{$sessionId}/{$timestamp}/{$godId}/{$queue}";
 
@@ -73,7 +73,7 @@ class GodClient extends AbstractHttpClient
         string $timestamp,
         int $languageCode = 1
     ): Response {
-        $signature = $this->generateSignature('getgodrecommendeditems', $timestamp);
+        $signature = $this->client->generateSignature('getgodrecommendeditems', $timestamp);
         $uri = "/getgodrecommendeditems{$this->client->getResponseFormat()}/{$this->client->getDevId()}/" .
             "{$signature}/{$sessionId}/{$timestamp}/{$godId}/{$languageCode}";
 

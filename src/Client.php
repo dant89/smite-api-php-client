@@ -3,7 +3,9 @@
 namespace Dant89\SmiteApiClient;
 
 use Dant89\SmiteApiClient\Authentication\AuthenticationClient;
+use Dant89\SmiteApiClient\God\GodClient;
 use Dant89\SmiteApiClient\Item\ItemClient;
+use Dant89\SmiteApiClient\League\LeagueClient;
 use Dant89\SmiteApiClient\Match\MatchClient;
 use Dant89\SmiteApiClient\Other\OtherClient;
 use Dant89\SmiteApiClient\Player\PlayerClient;
@@ -91,8 +93,8 @@ class Client
 
     /**
      * @param string $type
-     * @return AuthenticationClient|ItemClient|MatchClient|OtherClient|PlayerClient|PlayerInfoClient|TeamClient|
-     * ToolClient
+     * @return AuthenticationClient|GodClient|ItemClient|LeagueClient|MatchClient|OtherClient|PlayerClient|
+     * PlayerInfoClient|TeamClient|ToolClient
      */
     public function getHttpClient(string $type): AbstractHttpClient
     {
@@ -100,8 +102,14 @@ class Client
             case 'auth':
                 $client = new AuthenticationClient($this);
                 break;
+            case 'god':
+                $client = new GodClient($this);
+                break;
             case 'item':
                 $client = new ItemClient($this);
+                break;
+            case 'league':
+                $client = new LeagueClient($this);
                 break;
             case 'match':
                 $client = new MatchClient($this);
@@ -126,5 +134,17 @@ class Client
         }
 
         return $client;
+    }
+
+    /**
+     * MD5 hash a string combination to use as the API request signature
+     *
+     * @param string $uri
+     * @param string $timestamp
+     * @return string
+     */
+    public function generateSignature(string $uri, string $timestamp): string
+    {
+        return md5($this->getDevId() . $uri . $this->getAuthKey() . $timestamp);
     }
 }

@@ -19,7 +19,7 @@ class AuthenticationClient extends AbstractHttpClient
      */
     public function createSession(string $timestamp): Response
     {
-        $signature = $this->generateSignature('createsession', $timestamp);
+        $signature = $this->client->generateSignature('createsession', $timestamp);
         $uri = "/createsession{$this->client->getResponseFormat()}/{$this->client->getDevId()}/{$signature}/" .
             "{$timestamp}";
 
@@ -35,7 +35,7 @@ class AuthenticationClient extends AbstractHttpClient
      */
     public function testSession(string $timestamp, string $sessionId): Response
     {
-        $signature = $this->generateSignature('testsession', $timestamp);
+        $signature = $this->client->generateSignature('testsession', $timestamp);
         $uri = "/testsession{$this->client->getResponseFormat()}/{$this->client->getDevId()}/{$signature}/" .
             "{$sessionId}/{$timestamp}";
 

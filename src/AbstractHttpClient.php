@@ -39,7 +39,7 @@ class AbstractHttpClient
         $this->client = $client;
         $this->httpClient = HttpClient::create([
             'headers' => [
-                'User-Agent' => 'SMITE-API-PHP-CLIENT/0.0.1',
+                'User-Agent' => 'SMITE-API-PHP-CLIENT/1.0.0',
             ]
         ]);
     }
@@ -60,10 +60,10 @@ class AbstractHttpClient
             $response->setHeaders($httpResponse->getHeaders(false));
             $response->setContent($httpResponse->toArray(false));
         } catch (DecodingExceptionInterface |
-            RedirectionExceptionInterface |
-            ClientExceptionInterface |
-            ServerExceptionInterface |
-            TransportExceptionInterface $e
+        RedirectionExceptionInterface |
+        ClientExceptionInterface |
+        ServerExceptionInterface |
+        TransportExceptionInterface $e
         ) {
             $response->setStatus(500);
             $response->setContent([
@@ -73,17 +73,5 @@ class AbstractHttpClient
         }
 
         return $response;
-    }
-
-    /**
-     * MD5 hash a string combination to use as the API request signature
-     *
-     * @param string $uri
-     * @param string $timestamp
-     * @return string
-     */
-    public function generateSignature(string $uri, string $timestamp): string
-    {
-        return $signature = md5($this->client->getDevId() . $uri . $this->client->getAuthKey() . $timestamp);
     }
 }

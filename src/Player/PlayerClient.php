@@ -22,7 +22,7 @@ class PlayerClient extends AbstractHttpClient
      */
     public function getPlayer(string $playerId, string $sessionId, string $timestamp, string $portalId = null): Response
     {
-        $signature = $this->generateSignature('getplayer', $timestamp);
+        $signature = $this->client->generateSignature('getplayer', $timestamp);
         $uri = "/getplayer{$this->client->getResponseFormat()}/{$this->client->getDevId()}/{$signature}/{$sessionId}/" .
             "{$timestamp}/{$playerId}";
 
@@ -45,7 +45,7 @@ class PlayerClient extends AbstractHttpClient
      */
     public function getPlayerIdByName(string $playerName, string $sessionId, string $timestamp): Response
     {
-        $signature = $this->generateSignature('getplayeridbyname', $timestamp);
+        $signature = $this->client->generateSignature('getplayeridbyname', $timestamp);
         $uri = "/getplayeridbyname{$this->client->getResponseFormat()}/{$this->client->getDevId()}/{$signature}/" .
             "{$sessionId}/{$timestamp}/{$playerName}";
 
@@ -70,7 +70,7 @@ class PlayerClient extends AbstractHttpClient
         string $sessionId,
         string $timestamp
     ): Response {
-        $signature = $this->generateSignature('getplayeridbyportaluserid', $timestamp);
+        $signature = $this->client->generateSignature('getplayeridbyportaluserid', $timestamp);
         $uri = "/getplayeridbyportaluserid{$this->client->getResponseFormat()}/{$this->client->getDevId()}/" .
             "{$signature}/{$sessionId}/{$timestamp}/{$portalId}/{$portalUserId}";
 
@@ -95,7 +95,7 @@ class PlayerClient extends AbstractHttpClient
         string $sessionId,
         string $timestamp
     ): Response {
-        $signature = $this->generateSignature('getplayeridsbygamertag', $timestamp);
+        $signature = $this->client->generateSignature('getplayeridsbygamertag', $timestamp);
         $uri = "/getplayeridsbygamertag{$this->client->getResponseFormat()}/{$this->client->getDevId()}/{$signature}/" .
             "{$sessionId}/{$timestamp}/{$portalId}/{$gamerTag}";
 

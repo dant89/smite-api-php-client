@@ -22,7 +22,7 @@ class OtherClient extends AbstractHttpClient
      */
     public function getEsportsProLeagueDetails(string $sessionId, string $timestamp): Response
     {
-        $signature = $this->generateSignature('getesportsproleaguedetails', $timestamp);
+        $signature = $this->client->generateSignature('getesportsproleaguedetails', $timestamp);
         $uri = "/getesportsproleaguedetails{$this->client->getResponseFormat()}/{$this->client->getDevId()}/" .
             "{$signature}/{$sessionId}/{$timestamp}";
 
@@ -38,11 +38,10 @@ class OtherClient extends AbstractHttpClient
      */
     public function getMotd(string $sessionId, string $timestamp): Response
     {
-        $signature = $this->generateSignature('getmotd', $timestamp);
+        $signature = $this->client->generateSignature('getmotd', $timestamp);
         $uri = "/getmotd{$this->client->getResponseFormat()}/{$this->client->getDevId()}/{$signature}/{$sessionId}/" .
             "{$timestamp}";
 
         return $this->get($uri);
     }
-
 }

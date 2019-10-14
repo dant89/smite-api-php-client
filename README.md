@@ -79,17 +79,33 @@ Default limits:
 
 ## Helpers
 `languageCode` values:
-- 1 English
-- 2 German
-- 3 French
-- 5 Chinese
-- 7 Spanish
-- 9 Spanish (Latin America)
-- 10 Portuguese
-- 11 Russian
-- 12 Polish
-- 13 Turkish 
+- `1` English
+- `2` German
+- `3` French
+- `5` Chinese
+- `7` Spanish
+- `9` Spanish (Latin America)
+- `10` Portuguese
+- `11` Russian
+- `12` Polish
+- `13` Turkish 
 
+## Tests
+
+You can test your API key by running the PHPUnit tests included in this client.
+
+At present there is no rate limiting or caching so a run through will use 7 of your daily sessions (this is not ideal).
+
+PHPUnit tests:
+
+1. Add your `devId` and `authKey` to `tests/Helper/ClientTestCase.php`
+2. `php vendor/phpunit/phpunit/phpunit tests`
+
+PHP CodeSniffer:
+- `php vendor/squizlabs/php_codesniffer/bin/phpcs src --standard=PSR2 --severity=5 --extensions=php`
+
+PHP MessDetector
+- `php vendor/phpmd/phpmd/src/bin/phpmd src text controversial,unusedcode,design `
 
 ## Contributions
 
@@ -101,7 +117,7 @@ Contributions to the client are welcome, to contribute please:
 4. Push to the branch
 5. Create a new pull request
 
-[packagist-image]: https://img.shields.io/packagist/vpre/dant89/smite-api-php-client.svg
+[packagist-image]: https://img.shields.io/packagist/v/dant89/smite-api-php-client.svg
 [packagist-url]: https://packagist.org/packages/dant89/smite-api-php-client
 
 [github-issues-image]: https://img.shields.io/github/issues/dant89/smite-api-php-client

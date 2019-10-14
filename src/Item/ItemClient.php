@@ -21,7 +21,7 @@ class ItemClient extends AbstractHttpClient
      */
     public function getItems(string $sessionId, string $timestamp, int $languageCode = 1): Response
     {
-        $signature = $this->generateSignature('getitems', $timestamp);
+        $signature = $this->client->generateSignature('getitems', $timestamp);
         $uri = "/getitems{$this->client->getResponseFormat()}/{$this->client->getDevId()}/{$signature}/{$sessionId}/" .
             "{$timestamp}/{$languageCode}";
 

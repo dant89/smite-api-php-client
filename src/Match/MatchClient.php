@@ -21,7 +21,7 @@ class MatchClient extends AbstractHttpClient
      */
     public function getMatchDetails(string $matchId, string $sessionId, string $timestamp): Response
     {
-        $signature = $this->generateSignature('getmatchdetails', $timestamp);
+        $signature = $this->client->generateSignature('getmatchdetails', $timestamp);
         $uri = "/getmatchdetails{$this->client->getResponseFormat()}/{$this->client->getDevId()}/{$signature}/" .
             "{$sessionId}/{$timestamp}/{$matchId}";
 
@@ -43,7 +43,7 @@ class MatchClient extends AbstractHttpClient
     {
         $matchIds = implode(",", $matchIds);
 
-        $signature = $this->generateSignature('getmatchdetailsbatch', $timestamp);
+        $signature = $this->client->generateSignature('getmatchdetailsbatch', $timestamp);
         $uri = "/getmatchdetailsbatch{$this->client->getResponseFormat()}/{$this->client->getDevId()}/{$signature}/" .
             "{$sessionId}/{$timestamp}/{$matchIds}";
 
@@ -73,9 +73,14 @@ class MatchClient extends AbstractHttpClient
      * @param string $timestamp
      * @return Response
      */
-    public function getMatchIdsByQueue(string $queue, string $date, string $hour, string $sessionId, string $timestamp
-    ): Response {
-        $signature = $this->generateSignature('getmatchidsbyqueue', $timestamp);
+    public function getMatchIdsByQueue(
+        string $queue,
+        string $date,
+        string $hour,
+        string $sessionId,
+        string $timestamp
+    ) :Response {
+        $signature = $this->client->generateSignature('getmatchidsbyqueue', $timestamp);
         $uri = "/getmatchidsbyqueue{$this->client->getResponseFormat()}/{$this->client->getDevId()}/" .
             "{$signature}/{$sessionId}/{$timestamp}/{$queue}/{$date}/{$hour}";
 
@@ -92,7 +97,7 @@ class MatchClient extends AbstractHttpClient
      */
     public function getMatchPlayerDetails(string $matchId, string $sessionId, string $timestamp): Response
     {
-        $signature = $this->generateSignature('getmatchplayerdetails', $timestamp);
+        $signature = $this->client->generateSignature('getmatchplayerdetails', $timestamp);
         $uri = "/getmatchplayerdetails{$this->client->getResponseFormat()}/{$this->client->getDevId()}/{$signature}/" .
             "{$sessionId}/{$timestamp}/{$matchId}";
 
@@ -108,7 +113,7 @@ class MatchClient extends AbstractHttpClient
      */
     public function getTopMatches(string $sessionId, string $timestamp): Response
     {
-        $signature = $this->generateSignature('gettopmatches', $timestamp);
+        $signature = $this->client->generateSignature('gettopmatches', $timestamp);
         $uri = "/gettopmatches{$this->client->getResponseFormat()}/{$this->client->getDevId()}/{$signature}/" .
             "{$sessionId}/{$timestamp}";
 
