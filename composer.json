@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "symfony/http-client": "^4.3"
+        "symfony/http-client": "^5.0"
     },
     "require-dev": {
         "phpmd/phpmd": "^2.7",
