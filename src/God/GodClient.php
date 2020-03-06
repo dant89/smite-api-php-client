@@ -59,6 +59,23 @@ class GodClient extends AbstractHttpClient
     }
 
     /**
+     * Returns skins for a particular God ID
+     *
+     * @param string $godId
+     * @param string $sessionId
+     * @param string $timestamp
+     * @param int $languageCode
+     * @return Response
+     */
+    public function getGodSkins(string $godId, string $sessionId, string $timestamp, int $languageCode = 1): Response
+    {
+        $signature = $this->client->generateSignature('getgodskins', $timestamp);
+        $uri = "/getgodskins{$this->client->getResponseFormat()}/{$this->client->getDevId()}/{$signature}/{$sessionId}/{$timestamp}/{$godId}/{$languageCode}";
+
+        return $this->get($uri);
+    }
+
+    /**
      * Returns the Recommended Items for a particular God.
      *
      * @param string $godId

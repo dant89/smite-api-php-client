@@ -28,9 +28,15 @@ class GodClientTest extends ClientTestCase
         $this->assertEquals(200, $response->getStatus());
     }
 
+    public function testGetGodSkins()
+    {
+        $response = $this->godClient->getGodSkins('1649', $this->sessionId, $this->timestamp);
+        $this->assertEquals(200, $response->getStatus());
+    }
+
     public function testGetGodLeaderboard()
     {
-        $response = $this->godClient->getGodLeaderboard('1', '450', $this->sessionId, $this->timestamp);
+        $response = $this->godClient->getGodLeaderboard('1649', '450', $this->sessionId, $this->timestamp);
         $this->assertEquals(200, $response->getStatus());
     }
 
